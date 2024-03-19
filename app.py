@@ -97,6 +97,7 @@ class App(ctk.CTk):
             master=self,
             values=rowdata,
             font=(None, 17),
+            width=160,
         )
         self.today.grid(row=2, column=0, padx=20)
 
