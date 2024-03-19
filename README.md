@@ -17,4 +17,4 @@ py app.py
 Nếu bạn muốn sử dụng TKB mà không muốn mở terminal thì hãy làm theo các bước dưới đây
 - Trong trường hợp chưa cài [python](https://www.python.org), hãy cài python theo link https://www.python.org
 - Mở file `setup.cmd`
-- Để chạy phần mềm, hãy mở TkbBrowser.cmd
+- Để chạy phần mềm, hãy mở `TkbBrowser.cmd`
