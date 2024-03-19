@@ -51,6 +51,7 @@ class App(ctk.CTk):
         x = self.winfo_screenwidth() // 2 - WIDTH // 2
         y = self.winfo_screenheight() // 2 - HEIGHT // 2
         self.geometry(f'{WIDTH}x{HEIGHT}+{x}+{y}')
+        self.resizable(False, False)
 
         self.helpmenu = Helpmenu()
         self.helpmenu.withdraw()
@@ -76,14 +77,14 @@ class App(ctk.CTk):
 
         # Refesh button
         refesh_button = ctk.CTkButton(self, image=ctk.CTkImage(dark_image=Image.open('static/loading.gif'),size=(50,50)),
-                                      width=1, fg_color='transparent', bg_color='transparent', text='',
+                                      width=1, fg_color='transparent', bg_color='transparent', text='', hover=False,
                                       command=self.refesh)
         refesh_button.grid(row=3, column=0, padx=20, pady=20)
 
 
         # Help button
         help_button = ctk.CTkButton(self, image=ctk.CTkImage(dark_image=Image.open('static/question.webp'),size=(50,50)),
-                              width=1, fg_color='transparent', bg_color='transparent', text='',
+                              width=1, fg_color='transparent', bg_color='transparent', text='', hover=False,
                               command=self.open_helpmenu)
         help_button.grid(row=3, column=2, padx=20, pady=20)
 
@@ -108,6 +109,7 @@ class App(ctk.CTk):
             master=self,
             values = rowdata,
             font=(None, 17),
+            width=150,
         )
         self.allday.grid(row=2, column=1, padx=20, columnspan=2)
 
