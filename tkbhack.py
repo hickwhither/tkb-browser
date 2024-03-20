@@ -1,8 +1,10 @@
 import requests
+
 from bs4 import BeautifulSoup
-from datetime import date
 import json
-import os
+from datetime import date
+
+import time, os
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 URL = 'http://thptchuyennguyentatthanh.kontum.edu.vn/TKB/tkb_block_0.html'
@@ -16,15 +18,16 @@ def get_data(dont_request: bool = False):
     - error: requests.exceptions.RequestException, None if no error
     """
     if not os.path.exists('data.json'):
-        data = {'date': None, 'classlist': [], tkb: {}}
+        data = {'date': None, 'classlist': [], 'tkb': {}}
     else:
-        with open("data.json", "r") as f:
-            data = json.load(f)
+        try:
+            with open("data.json", "r") as f: data = json.load(f)
+        except: data = {'date': None, 'classlist': [], 'tkb': {}}
     
     if dont_request: return data, None
 
-    try: html = requests.get(URL,headers=HEADERS).content.decode()
-    except requests.exceptions.RequestException as e: return data, e
+    try: html = requests.get(URL,headers=HEADERS,timeout=1,verify=False,proxies={'http':'http://112.78.2.73'}).content.decode()
+    except Exception as e: return data, e
     
     
     date = html[556:566]
@@ -59,5 +62,3 @@ def get_data(dont_request: bool = False):
         json.dump(result, f, indent=4)
     
     return result, None
-
-get_data()
